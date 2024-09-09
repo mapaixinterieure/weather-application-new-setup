@@ -2,6 +2,10 @@ body {
     background-color: #B2CFF7;
 }
 
+header {
+    border-bottom: 1px solid #B2CFF7;
+    padding: 0 0 30px 0;
+}
 .weather_app {
     background-color:#d7e5f8;
     max-width: 600px;
@@ -11,5 +15,57 @@ body {
     border-radius: 14px;
     font-family: "Montserrat", sans-serif;
     
-    
+}
+
+main {
+    padding: 30px 0;
+}
+
+.weather_app_data {
+    display:flex;
+    justify-content: space-between;
+}
+
+.weather_app_city {
+    margin: 0;
+    font-size: 38px;
+    line-height: 48px;
+}
+
+.weather_app_details {
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.weather_app_details strong {
+    color:#F65292;
+}
+.search_form_input {
+    background-color: #B2CFF7;
+    border: none;
+    border-radius: 7px;
+    width: 80%;
+    padding: 15px 20px;
+    font-size: 16px;
+}
+
+.search_form_submit {
+    background-color: #97A0EC;
+    border:none;
+    border-radius: 7px;
+    padding: 15px 20px;
+    color:white;
+    margin-left: 2px;
+    font-size: 16px;
+}
+
+footer {
+    border-top: 1px solid #B2CFF7;
+    padding: 30px 0 0 0;
+    font-size: 14px;
+
+}
+
+a {
+   color:#97A0EC;
 }
