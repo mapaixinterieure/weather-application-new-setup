@@ -69,3 +69,11 @@ footer {
 a {
    color:#97A0EC;
 }
+
+.weather_app_temperature_container {
+    display:flex;
+}
+
+.weather_app_temperature {
+    font-size:80px;
+}
