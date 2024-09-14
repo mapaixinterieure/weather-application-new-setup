@@ -72,8 +72,23 @@ a {
 
 .weather_app_temperature_container {
     display:flex;
+    justify-content: right;
+
 }
 
 .weather_app_temperature {
     font-size:80px;
+    font-weight:bold;
+    margin-left: 12px;
+}
+
+.weather_app_icon {
+    font-size:45px;
+    margin-top: 22px;
+}
+
+.weather_app_unit {
+    font-size:30px;
+    margin-top:22px;
+    font-weight: bold;
 }
