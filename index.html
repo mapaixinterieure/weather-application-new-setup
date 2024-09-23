@@ -11,23 +11,30 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nerko+One&family=Roboto+Slab:wght@100..900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="weather_app">
       <header>
-        <form class="search_form">
+        <form id="search_form" class="search_form">
           <input
             type="search"
             placeholder="Enter a city"
             required
+            id="search_form_input"
             class="search_form_input"
           />
-          <input type="submit" value="Search" class="search_form_submit" />
+          <input
+            type="submit"
+            value="Search"
+            class="search_form_submit"
+            id="submit"
+          />
         </form>
       </header>
       <main>
         <div class="weather_app_data">
-          <h1 class="weather_app_city">Heidelberg</h1>
+          <h1 class="weather_app_city" id="weather_app_city">Heidelberg</h1>
           <div class="weather_app_temperature_container">
             <div class="weather_app_icon">🌦️</div>
             <div class="weather_app_temperature">24</div>
