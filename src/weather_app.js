@@ -3,12 +3,18 @@ function updateWeather (response) {
     update_temperature(response.data["temperature"]["current"])
     update_humidity(response.data["temperature"]["humidity"])
     update_wind_speed(response.data["wind"]["speed"])
+    update_weather_icon(response.data["condition"]["icon_url"])
 
+}
+
+function update_weather_icon(new_icon){
+    let weather_app_icon = document.querySelector("#weather_app_icon")
+    weather_app_icon.src = new_icon;
 }
 
 function update_wind_speed(new_wind_speed){
     let wind_speed = document.querySelector("#wind_speed")
-    wind_speed.innerHTML = new_wind_speed;
+    wind_speed.src = new_wind_speed;
 }
 
 function update_humidity(new_humidity){
