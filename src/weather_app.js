@@ -2,7 +2,13 @@ function updateWeather (response) {
     console.log(response.data);
     update_temperature(response.data["temperature"]["current"])
     update_humidity(response.data["temperature"]["humidity"])
+    update_wind_speed(response.data["wind"]["speed"])
 
+}
+
+function update_wind_speed(new_wind_speed){
+    let wind_speed = document.querySelector("#wind_speed")
+    wind_speed.innerHTML = new_wind_speed;
 }
 
 function update_humidity(new_humidity){
