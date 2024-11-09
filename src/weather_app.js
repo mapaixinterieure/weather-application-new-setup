@@ -1,7 +1,13 @@
 function updateWeather (response) {
     console.log(response.data);
     update_temperature(response.data["temperature"]["current"])
+    update_humidity(response.data["temperature"]["humidity"])
 
+}
+
+function update_humidity(new_humidity){
+    let humidity = document.querySelector("#humidity")
+    humidity.innerHTML = new_humidity;
 }
 
 function update_temperature(temp_c){
