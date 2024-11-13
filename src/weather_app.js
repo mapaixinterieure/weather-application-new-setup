@@ -1,10 +1,23 @@
 function updateWeather (response) {
     console.log(response.data);
+    let date = new Date(response.data["time"] * 1000);
+    const formattedDate = date.toLocaleString('en-US', { weekday: 'long',  hour: 'numeric', minute: 'numeric' });
+    updateTime(formattedDate);
     update_temperature(response.data["temperature"]["current"])
     update_humidity(response.data["temperature"]["humidity"])
     update_wind_speed(response.data["wind"]["speed"])
     update_weather_icon(response.data["condition"]["icon_url"])
+    update_weather_status(response.data["condition"]["description"]) 
+}
 
+function update_weather_status(new_weather_status){
+    let weather_status = document.querySelector("#weather_status")
+    weather_status.innerHTML = new_weather_status
+}
+
+function updateTime(current_time){
+    let time_query = document.querySelector("#time")
+    time_query.innerHTML = current_time
 }
 
 function update_weather_icon(new_icon){
@@ -14,7 +27,7 @@ function update_weather_icon(new_icon){
 
 function update_wind_speed(new_wind_speed){
     let wind_speed = document.querySelector("#wind_speed")
-    wind_speed.src = new_wind_speed;
+    wind_speed.innerHTML = new_wind_speed;
 }
 
 function update_humidity(new_humidity){
