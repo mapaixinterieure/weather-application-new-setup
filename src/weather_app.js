@@ -43,11 +43,61 @@ function update_temperature(temp_c){
 function searchCity (city) {
     //make api call and update user interface
     let apiKey = "o9f9c2ca05ab4de97918ta723306c1fd";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
-    axios.get(apiUrl).then(updateWeather);
+    let apiCurrentUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    axios.get(apiCurrentUrl).then(updateWeather);
 }
 
+function getForecast(city) {
+    //make api call and update user interface
+    let apiKey = "o9f9c2ca05ab4de97918ta723306c1fd";
+    let apiForecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+    axios.get(apiForecastUrl).then(updateWeatherForecast);
+}
 
+function updateWeatherForecast (response) {
+    console.log(response.data);
+    let days_future = [1, 2, 3, 4, 5]
+    new_html = "";
+    days_future.forEach((day_in_future_int) => {
+        new_html = new_html + update_one_day_forecast(response.data["daily"][day_in_future_int], day_in_future_int)
+    });
+    let forecastElement = document.querySelector('#forecast');
+    forecastElement.innerHTML = new_html;
+    
+}
+
+function update_one_day_forecast(data, day_nr){
+    console.log(data);
+    let date = new Date(data["time"] * 1000);
+    let weekday_short = date.toLocaleString('en-US', { weekday: 'short' });
+    let icon_url = data["condition"]["icon_url"]
+    let max_temp = data["temperature"]["maximum"]
+    let min_temp = data["temperature"]["minimum"]
+    console.log(weekday_short);
+    return_value = `
+<div class="weather_forecast_days">
+            <div class="weather_forecast_dates">${weekday_short}</div>
+            <div class="weather_forecast_icons"><img
+              class="weather_app_icon"
+              id="weather_app_icon"
+              src="${icon_url}"/>
+            
+            
+            </div>
+            <div class="weather_forecast_temperatures">
+              <div class="weather_forecast_temperatures">
+                <strong>${max_temp}°</strong>
+              </div>
+              <div class="weather_forecast_temperature">
+                <strong>${min_temp}°</strong>
+              </div>
+            </div>
+          </div>
+          
+`
+    return  return_value;
+
+}
 
 function handleSearchSubmit(event){
     event.preventDefault();
@@ -61,13 +111,14 @@ function handleSearchSubmit(event){
 
 
     searchCity(searchInput.value);
+    getForecast(searchInput.value);
 }
 
 let searchFormElement = document.querySelector("#search_form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 function displayForecast(){
-    let forecast = document.querySelector('#forecast');
+    let forecastElement = document.querySelector('#forecast');
     
 
 
@@ -92,7 +143,17 @@ forecast.innerHTML = <div class="weather_forecast_days">
           </div>
           
 `});
-}
+
 
 forecastElement.innerHTML = forecastHtml;
-displayForecast
+}
+// displayForecast
+
+function load_default_city(){
+    let default_city = "Berlin"
+    let weather_app_cityElement = document.querySelector("#weather_app_city")
+    weather_app_cityElement.innerHTML = default_city;
+    searchCity(default_city);
+    getForecast(default_city);
+}
+load_default_city();
